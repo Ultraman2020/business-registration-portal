@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Registration & Support Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='50' font-weight='bold' text-anchor='middle' dy='.3em' fill='%232E5090'>IU</text></svg>">
+</head>
+<body>
+    <div id="app">
+        <!-- Login/Register Page -->
+        <div id="authPage" class="auth-container">
+            <div class="auth-card">
+                <div class="logo-section">
+                    <div class="logo">IU</div>
+                    <h1>Iconic University</h1>
+                    <h2>Business Registration Portal</h2>
+                </div>
+
+                <div class="auth-tabs">
+                    <button class="tab-btn active" onclick="switchTab('login')">Login</button>
+                    <button class="tab-btn" onclick="switchTab('register')">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="loginEmail" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <span class="error-message" id="loginEmailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input 
+                            type="password" 
+                            id="loginPassword" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                        <span class="error-message" id="loginPasswordError"></span>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="loginBtn">Login</button>
+                    <span class="error-message" id="loginFormError"></span>
+                    <span class="success-message" id="loginSuccess"></span>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="regFirstName">First Name</label>
+                        <input 
+                            type="text" 
+                            id="regFirstName" 
+                            name="firstName" 
+                            placeholder="Enter first name"
+                            required
+                        >
+                        <span class="error-message" id="regFirstNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regLastName">Last Name</label>
+                        <input 
+                            type="text" 
+                            id="regLastName" 
+                            name="lastName" 
+                            placeholder="Enter last name"
+                            required
+                        >
+                        <span class="error-message" id="regLastNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="regEmail" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <span class="error-message" id="regEmailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regBusinessName">Business Name</label>
+                        <input 
+                            type="text" 
+                            id="regBusinessName" 
+                            name="businessName" 
+                            placeholder="Enter business name"
+                            required
+                        >
+                        <span class="error-message" id="regBusinessNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input 
+                            type="password" 
+                            id="regPassword" 
+                            name="password" 
+                            placeholder="Create a password (min 8 characters)"
+                            required
+                        >
+                        <span class="error-message" id="regPasswordError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regConfirmPassword">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="regConfirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirm your password"
+                            required
+                        >
+                        <span class="error-message" id="regConfirmPasswordError"></span>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="registerBtn">Create Account</button>
+                    <span class="error-message" id="registerFormError"></span>
+                    <span class="success-message" id="registerSuccess"></span>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="dashboard-container" style="display: none;">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <div class="logo-mini">IU</div>
+                    <h3>Business Portal</h3>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" onclick="switchDashboardTab('overview', event)">
+                        <span class="icon">📊</span> Dashboard
+                    </a>
+                    <a href="#" class="nav-item" onclick="switchDashboardTab('registration', event)">
+                        <span class="icon">📝</span> Registration
+                    </a>
+                    <a href="#" class="nav-item" onclick="switchDashboardTab('documents', event)">
+                        <span class="icon">📄</span> Documents
+                    </a>
+                    <a href="#" class="nav-item" onclick="switchDashboardTab('compliance', event)">
+                        <span class="icon">✅</span> Compliance
+                    </a>
+                    <a href="#" class="nav-item" onclick="switchDashboardTab('support', event)">
+                        <span class="icon">🆘</span> Support
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button onclick="logout()" class="btn-logout">Logout</button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="dashboard-content">
+                <!-- Top Bar -->
+                <div class="top-bar">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <div class="user-info">
+                        <span id="userGreeting">Welcome</span>
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%232E5090'/><circle cx='50' cy='35' r='15' fill='white'/><path d='M 20 80 Q 50 60 80 80' fill='white'/></svg>" alt="Profile" class="avatar">
+                    </div>
+                </div>
+
+                <!-- Dashboard Overview Tab -->
+                <section id="overviewTab" class="dashboard-tab active">
+                    <div class="welcome-section">
+                        <h2>Welcome to Your Business Dashboard</h2>
+                        <p>Manage your business registration, documents, and compliance all in one place.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📝</div>
+                            <h3>Registration Status</h3>
+                            <p id="regStatus" class="stat-value">Pending</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📄</div>
+                            <h3>Documents</h3>
+                            <p id="docCount" class="stat-value">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <h3>Compliance Score</h3>
+                            <p id="complianceScore" class="stat-value">0%</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📅</div>
+                            <h3>Next Reminder</h3>
+                            <p id="nextReminder" class="stat-value">--</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-section">
+                        <h3>Your Profile Information</h3>
+                        <div class="profile-info-grid">
+                            <div class="info-item">
+                                <label>First Name:</label>
+                                <p id="displayFirstName">--</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Last Name:</label>
+                                <p id="displayLastName">--</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Email:</label>
+                                <p id="displayEmail">--</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Business Name:</label>
+                                <p id="displayBusinessName">--</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Registration Date:</label>
+                                <p id="registrationDate">--</p>
+                            </div>
+                            <div class="info-item">
+                                <label>Account Status:</label>
+                                <p id="accountStatus"><span class="status-badge active">Active</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Registration Tab -->
+                <section id="registrationTab" class="dashboard-tab">
+                    <h2>Business Registration Guidance</h2>
+                    <div class="guidance-section">
+                        <div class="guidance-card">
+                            <h3>Step 1: Company Information</h3>
+                            <p>Provide your company name, address, and contact information.</p>
+                            <button class="btn-secondary" onclick="alert('Guidance content for Step 1')">Learn More</button>
+                        </div>
+                        <div class="guidance-card">
+                            <h3>Step 2: Legal Structure</h3>
+                            <p>Choose your business entity type (Sole Proprietor, Partnership, Corporation, etc.)</p>
+                            <button class="btn-secondary" onclick="alert('Guidance content for Step 2')">Learn More</button>
+                        </div>
+                        <div class="guidance-card">
+                            <h3>Step 3: Registration</h3>
+                            <p>Submit your registration documents and await approval.</p>
+                            <button class="btn-secondary" onclick="alert('Guidance content for Step 3')">Learn More</button>
+                        </div>
+                        <div class="guidance-card">
+                            <h3>Step 4: Tax Registration</h3>
+                            <p>Complete tax registration requirements with your jurisdiction.</p>
+                            <button class="btn-secondary" onclick="alert('Guidance content for Step 4')">Learn More</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Documents Tab -->
+                <section id="documentsTab" class="dashboard-tab">
+                    <h2>Document Management</h2>
+                    <div class="document-upload">
+                        <h3>Upload Documents</h3>
+                        <form id="documentForm" class="upload-form">
+                            <div class="form-group">
+                                <label for="docType">Document Type</label>
+                                <select id="docType" required>
+                                    <option value="">Select a document type</option>
+                                    <option value="business-license">Business License</option>
+                                    <option value="tax-id">Tax ID Certificate</option>
+                                    <option value="articles-incorporation">Articles of Incorporation</option>
+                                    <option value="bylaws">Business Bylaws</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="error-message" id="docTypeError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="docFile">Upload File</label>
+                                <input type="file" id="docFile" accept=".pdf,.doc,.docx,.jpg,.png" required>
+                                <span class="error-message" id="docFileError"></span>
+                            </div>
+                            <button type="submit" class="btn-primary">Upload Document</button>
+                        </form>
+                    </div>
+
+                    <div class="documents-list">
+                        <h3>Your Documents</h3>
+                        <div id="docsList" class="docs-container">
+                            <p class="empty-state">No documents uploaded yet.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Compliance Tab -->
+                <section id="complianceTab" class="dashboard-tab">
+                    <h2>Compliance Management</h2>
+                    <div class="compliance-reminders">
+                        <h3>Upcoming Compliance Reminders</h3>
+                        <div class="reminders-list">
+                            <div class="reminder-item">
+                                <div class="reminder-icon">📋</div>
+                                <div class="reminder-content">
+                                    <h4>Annual Tax Filing</h4>
+                                    <p>Due: April 15, 2026</p>
+                                    <p class="reminder-desc">File your annual business tax return</p>
+                                </div>
+                                <div class="reminder-status">In Progress</div>
+                            </div>
+                            <div class="reminder-item">
+                                <div class="reminder-icon">🔍</div>
+                                <div class="reminder-content">
+                                    <h4>Business License Renewal</h4>
+                                    <p>Due: July 1, 2026</p>
+                                    <p class="reminder-desc">Renew your business license</p>
+                                </div>
+                                <div class="reminder-status">Pending</div>
+                            </div>
+                            <div class="reminder-item">
+                                <div class="reminder-icon">📊</div>
+                                <div class="reminder-content">
+                                    <h4>Financial Report Submission</h4>
+                                    <p>Due: May 30, 2026</p>
+                                    <p class="reminder-desc">Submit quarterly financial reports</p>
+                                </div>
+                                <div class="reminder-status">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Support Tab -->
+                <section id="supportTab" class="dashboard-tab">
+                    <h2>Business Support Resources</h2>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <h3>📚 Knowledge Base</h3>
+                            <p>Access our comprehensive guides and tutorials on business registration and compliance.</p>
+                            <button class="btn-secondary">Browse Articles</button>
+                        </div>
+                        <div class="resource-card">
+                            <h3>💬 Live Chat Support</h3>
+                            <p>Get instant help from our support team available 24/7.</p>
+                            <button class="btn-secondary">Start Chat</button>
+                        </div>
+                        <div class="resource-card">
+                            <h3>☎️ Phone Support</h3>
+                            <p>Call our support team at +1-800-BUSINESS (248-9377)</p>
+                            <button class="btn-secondary">Schedule Call</button>
+                        </div>
+                        <div class="resource-card">
+                            <h3>📧 Email Support</h3>
+                            <p>Send your questions to our support team and get detailed responses.</p>
+                            <button class="btn-secondary">Send Email</button>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🎓 Training Webinars</h3>
+                            <p>Join our expert-led webinars on business topics.</p>
+                            <button class="btn-secondary">View Schedule</button>
+                        </div>
+                        <div class="resource-card">
+                            <h3>⚖️ Legal Resources</h3>
+                            <p>Access templates and legal documents for your business.</p>
+                            <button class="btn-secondary">Explore Resources</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

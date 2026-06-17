@@ -246,22 +246,22 @@
                         <div class="guidance-card">
                             <h3>Step 1: Company Information</h3>
                             <p>Provide your company name, address, and contact information.</p>
-                            <button class="btn-secondary" onclick="alert('Guidance content for Step 1')">Learn More</button>
+                            <button class="btn-secondary" onclick="openModal('step1')">Learn More</button>
                         </div>
                         <div class="guidance-card">
                             <h3>Step 2: Legal Structure</h3>
                             <p>Choose your business entity type (Sole Proprietor, Partnership, Corporation, etc.)</p>
-                            <button class="btn-secondary" onclick="alert('Guidance content for Step 2')">Learn More</button>
+                            <button class="btn-secondary" onclick="openModal('step2')">Learn More</button>
                         </div>
                         <div class="guidance-card">
                             <h3>Step 3: Registration</h3>
                             <p>Submit your registration documents and await approval.</p>
-                            <button class="btn-secondary" onclick="alert('Guidance content for Step 3')">Learn More</button>
+                            <button class="btn-secondary" onclick="openModal('step3')">Learn More</button>
                         </div>
                         <div class="guidance-card">
                             <h3>Step 4: Tax Registration</h3>
                             <p>Complete tax registration requirements with your jurisdiction.</p>
-                            <button class="btn-secondary" onclick="alert('Guidance content for Step 4')">Learn More</button>
+                            <button class="btn-secondary" onclick="openModal('step4')">Learn More</button>
                         </div>
                     </div>
                 </section>
@@ -375,6 +375,22 @@
                     </div>
                 </section>
             </main>
+        </div>
+    </div>
+
+    <!-- Modal for Detailed Information -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Title</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeModal()">Close</button>
+            </div>
         </div>
     </div>
 

@@ -345,32 +345,32 @@
                         <div class="resource-card">
                             <h3>📚 Knowledge Base</h3>
                             <p>Access our comprehensive guides and tutorials on business registration and compliance.</p>
-                            <button class="btn-secondary">Browse Articles</button>
+                            <button class="btn-secondary" onclick="openResource('knowledge-base')">Browse Articles</button>
                         </div>
                         <div class="resource-card">
                             <h3>💬 Live Chat Support</h3>
                             <p>Get instant help from our support team available 24/7.</p>
-                            <button class="btn-secondary">Start Chat</button>
+                            <button class="btn-secondary" onclick="openResource('live-chat')">Start Chat</button>
                         </div>
                         <div class="resource-card">
                             <h3>☎️ Phone Support</h3>
                             <p>Call our support team at +1-800-BUSINESS (248-9377)</p>
-                            <button class="btn-secondary">Schedule Call</button>
+                            <button class="btn-secondary" onclick="openResource('phone-support')">Schedule Call</button>
                         </div>
                         <div class="resource-card">
                             <h3>📧 Email Support</h3>
                             <p>Send your questions to our support team and get detailed responses.</p>
-                            <button class="btn-secondary">Send Email</button>
+                            <button class="btn-secondary" onclick="openResource('email-support')">Send Email</button>
                         </div>
                         <div class="resource-card">
                             <h3>🎓 Training Webinars</h3>
                             <p>Join our expert-led webinars on business topics.</p>
-                            <button class="btn-secondary">View Schedule</button>
+                            <button class="btn-secondary" onclick="openResource('webinars')">View Schedule</button>
                         </div>
                         <div class="resource-card">
                             <h3>⚖️ Legal Resources</h3>
                             <p>Access templates and legal documents for your business.</p>
-                            <button class="btn-secondary">Explore Resources</button>
+                            <button class="btn-secondary" onclick="openResource('legal-resources')">Explore Resources</button>
                         </div>
                     </div>
                 </section>
@@ -390,6 +390,23 @@
             </div>
             <div class="modal-footer">
                 <button class="btn-primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal">
+        <div class="modal-content chat-modal">
+            <div class="modal-header">
+                <h2 id="chatTitle">Live Chat Support</h2>
+                <button class="modal-close" onclick="closeChat()">&times;</button>
+            </div>
+            <div class="chat-container">
+                <div id="chatMessages" class="chat-messages"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+                    <button class="btn-primary" onclick="sendChatMessage()">Send</button>
+                </div>
             </div>
         </div>
     </div>
